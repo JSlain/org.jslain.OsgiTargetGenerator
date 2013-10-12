@@ -1,6 +1,8 @@
 package org.jslain.osgitargetgenerator;
 
-import java.io.File;
+import org.jslain.osgitargetgenerator.impl.SpecificParams;
+
+import com.lexicalscope.jewel.cli.CliFactory;
 
 /**
  * Main class, only contains a main() method, for rapid use of the tool.
@@ -13,13 +15,23 @@ import java.io.File;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-		TargetData data = new TargetData();
-		data.setFrameworkRoot(new File("/Users/necrosado/Downloads/apache-servicemix-4.5.2")); //Change to the folder you'ld like to generate target
-		data.setOutput(new File("./newtarget.target"));
-		data.setName("MyNewTarget");
-		data.setTemplateVersion(TemplateVersion.PDE_3_8);
+		
+		TargetData data = dataFromArgs(args);
 		
 		Proceeder proc = new Proceeder();
 		proc.proceed(data);
+	}
+	
+	private static TargetData dataFromArgs(String[] args){
+		TargetData toReturn = new TargetData();
+		
+		SpecificParams params = CliFactory.parseArguments(SpecificParams.class, args);
+		
+		toReturn.setSourceFolders(params.sourceFolders());
+		toReturn.setOutput(params.output());
+		toReturn.setName(params.name());
+		toReturn.setTemplateVersion(params.targetVersion());
+		
+		return toReturn;
 	}
 }

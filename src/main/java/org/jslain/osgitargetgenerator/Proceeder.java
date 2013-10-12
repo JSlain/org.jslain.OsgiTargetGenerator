@@ -34,9 +34,12 @@ public class Proceeder {
 		
 		//Locations
 		String locations = "";
-		for(File f : scanFolder(data.getFrameworkRoot())){
-			locations += LOCATION_TEMPLATE.replace(VAR_PATH, f.getAbsolutePath()) + "\r\n";
+		for(File source : data.getSourceFolders()){
+			for(File f : scanFolder(source)){
+				locations += LOCATION_TEMPLATE.replace(VAR_PATH, f.getAbsolutePath()) + "\r\n";
+			}
 		}
+		
 		template = template.replace(VAR_LOCATIONS, locations);
 		
 		FileOutputStream fos = null;

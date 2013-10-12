@@ -1,6 +1,7 @@
 package org.jslain.osgitargetgenerator;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Dto that contains informations about the source and the target.
@@ -14,8 +15,8 @@ public class TargetData {
 	/** Name of the target (will be visible in Eclipse as the Target Name) */
 	private String name;
 	
-	/** Root folder of the framework to be scanned for bundles. */
-	private File frameworkRoot;
+	/** Root folders of the framework to be scanned for bundles. */
+	private List<File> sourceFolders;
 	
 	/** Output target file. */
 	private File output;
@@ -32,12 +33,12 @@ public class TargetData {
 		this.name = name;
 	}
 
-	public File getFrameworkRoot() {
-		return frameworkRoot;
+	public List<File> getSourceFolders() {
+		return sourceFolders;
 	}
 
-	public void setFrameworkRoot(File frameworkRoot) {
-		this.frameworkRoot = frameworkRoot;
+	public void setSourceFolders(List<File> sourceFolders) {
+		this.sourceFolders = sourceFolders;
 	}
 
 	public File getOutput() {
