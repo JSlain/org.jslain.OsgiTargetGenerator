@@ -6,6 +6,26 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OsgiTargetGenerator</name>
 	<description>A little utility used to generate an Eclipse .target file from a recursively scanned folder, to be used for development. This can be pretty useful if you plan on deploying your bundles in a specific framework or server which provides it's bundles in tons of separated subfolders.</description>
+	<packaging>jar</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>org.jslain.osgitargetgenerator.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
